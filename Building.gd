@@ -4,6 +4,7 @@ class_name Building extends Node2D
 @export var can_link = true
 @export var cooldown = 1.0
 @export var prefab: PackedScene;
+@export var output_type: String = "";
 
 class ConveyorItem:
 	var progress: int;
@@ -12,8 +13,6 @@ class ConveyorItem:
 	func _init(item: Node2D):
 		self.progress = 0;
 		self.item = item
-	
-	
 
 var conveyor_items: Array[ConveyorItem] = [];
 
@@ -53,7 +52,7 @@ func _process(delta: float):
 	
 	
 	if out_link != null:
-		if out_link.can_accept_item():
+		if out_link.can_accept_item(self):
 			if cooldown_timer > cooldown:
 				if can_output_item():
 					output_item()
@@ -93,7 +92,7 @@ func can_output_item() -> bool:
 		return out_link != null
 	return false
 
-func can_accept_item() -> bool:
+func can_accept_item(builder: Building) -> bool:
 	if held_item == null:
 		return true
 	return false
