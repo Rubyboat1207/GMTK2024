@@ -27,7 +27,10 @@ var precalculated_distance: float;
 var held_item: Node2D = null;
 
 func link(other: Building):
-	if other.can_link:
+	if other == self || other == null:
+		line_renderer.points = []
+		out_link = null
+	elif other.can_link:
 		out_link = other
 		
 		line_renderer.points = []
@@ -35,6 +38,11 @@ func link(other: Building):
 		line_renderer.add_point(out_link.position - self.position)
 		
 		precalculated_distance = self.position.distance_to(out_link.position)
+	
+	for item in conveyor_items:
+		item.item.queue_free()
+	
+	conveyor_items = []
 
 func _ready():
 	line_renderer = $LinkVisual
