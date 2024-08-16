@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7kll8nutf7ku"]
+
+[ext_resource type="Script" path="res://Building.gd" id="1_bsa1x"]
+[ext_resource type="Texture2D" uid="uid://b24mpqu2dxtou" path="res://icon.svg" id="1_sl5mq"]
+
+[node name="SelectionDisplay" type="Node2D"]
+script = ExtResource("1_bsa1x")
+can_link = false
+cooldown = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_sl5mq")
