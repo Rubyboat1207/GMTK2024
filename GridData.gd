@@ -1,6 +1,6 @@
 class_name grid_helper
 static var manager: GameManager = null;
-static var cell_size: int = 50;
+static var cell_size: int = 150;
 
 static func get_at_position(grid_position: Vector2):
 	var expected_pos = from_grid_space(grid_position)

@@ -1,11 +1,14 @@
 class_name GameManager extends Node2D
 
 var machines = [
-	preload('res://DoNothingMachine.tscn'),
-	preload('res://ProduceNothingMachine.tscn')
+	preload('res://BaseRobotCreator.tscn'),
+	preload('res://ReedirectMachine.tscn')
 ]
 
-var selected_machine = preload('res://DoNothingMachine.tscn')
+var day_timer = 0;
+var day_length = 2 * 60;
+
+var selected_machine = machines[0]
 var link_target: Building = null;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,12 +21,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+var last_mouse_position = Vector2(0,0)
+
 func _input(event: InputEvent):
 	var grid_position = grid_helper.from_screen_space(get_viewport().get_mouse_position());
 	var pos = grid_helper.snap_to_grid(get_viewport().get_mouse_position());
 	
-	if event is InputEventMouseMotion:		
+	
+	
+	if event is InputEventMouseMotion:
+		if Input.is_action_pressed("move_screen"):
+			print('moving')
+			$Camera2D.position += (last_mouse_position - event.position);
+		last_mouse_position = event.position;
 		$SelectionDisplay.position = pos
+	
+	if Input.is_action_just_released("move_screen"):
+		return
 	if Input.is_action_just_released("place"):
 		
 		if grid_helper.get_at_position(pos) == null:
@@ -33,7 +47,7 @@ func _input(event: InputEvent):
 		if cur_target != null && link_target == null && cur_target.can_link:
 			link_target = cur_target
 		else:
-			if !(link_target == null && cur_target == null):
+			if cur_target != null && link_target != null:
 				link_target.link(cur_target)
 				link_target = null
 	if Input.is_action_just_pressed("cycle_machines"):

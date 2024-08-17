@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7atrrwxb5dcw"]
+
+[ext_resource type="Script" path="res://Building.gd" id="1_vq8ap"]
+[ext_resource type="Texture2D" uid="uid://1d1fckj0kdnw" path="res://conveyor_pole.png" id="2_3ho71"]
+
+[node name="RedirectMachine" type="Node2D"]
+script = ExtResource("1_vq8ap")
+cooldown = 0.0
+take_type_of_link = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+scale = Vector2(6.855, 6.855)
+texture = ExtResource("2_3ho71")
+
+[node name="LinkVisual" type="Line2D" parent="."]
+z_index = -20
+z_as_relative = false
+width = 40.0
+default_color = Color(0.108046, 0.121946, 0.162346, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ConveyorContainer" type="Node2D" parent="."]
