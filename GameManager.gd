@@ -33,8 +33,9 @@ func _input(event: InputEvent):
 		if cur_target != null && link_target == null && cur_target.can_link:
 			link_target = cur_target
 		else:
-			link_target.link(cur_target)
-			link_target = null
+			if !(link_target == null && cur_target == null):
+				link_target.link(cur_target)
+				link_target = null
 	if Input.is_action_just_pressed("cycle_machines"):
 		var idx = machines.find(selected_machine) + 1;
 		if idx == machines.size():

@@ -10,9 +10,9 @@ class ConveyorItem:
 	var progress: int;
 	var item: Node2D;
 	
-	func _init(item: Node2D):
-		self.progress = 0;
-		self.item = item
+	func _init(item_in: Node2D):
+		progress = 0;
+		item = item_in
 
 var conveyor_items: Array[ConveyorItem] = [];
 
@@ -49,9 +49,8 @@ func _ready():
 func _process(delta: float):
 	cooldown_timer += delta
 	
-	
-	
 	if out_link != null:
+		print(cooldown_timer)
 		if out_link.can_accept_item(self):
 			if cooldown_timer > cooldown:
 				if can_output_item():
@@ -65,6 +64,7 @@ func _process(delta: float):
 					out_link.input_item(item.item)
 					conveyor_items.remove_at(conveyor_items.find(item))
 				
+				print(item.progress + delta * 100)
 				item.item.position = Vector2(0,0).lerp((out_link.position - self.position), item.progress / precalculated_distance)
 
 

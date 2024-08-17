@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://quwx6weu78ls" path="res://basic_machine.png" id="1_6w3i0"]
 [ext_resource type="Script" path="res://Building.gd" id="1_7v7yg"]
-[ext_resource type="PackedScene" uid="uid://dy4hvtv8fwm2x" path="res://ExampleItem.tscn" id="2_xawvm"]
+[ext_resource type="PackedScene" uid="uid://dn7b4eyrpgeb8" path="res://Robot.tscn" id="2_7eetk"]
 
 [node name="DoNothingMachine" type="Node2D"]
 script = ExtResource("1_7v7yg")
-prefab = ExtResource("2_xawvm")
+prefab = ExtResource("2_7eetk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
@@ -16,7 +16,7 @@ texture = ExtResource("1_6w3i0")
 [node name="LinkVisual" type="Line2D" parent="."]
 z_index = -20
 z_as_relative = false
-width = 20.0
+width = 40.0
 default_color = Color(0.108046, 0.121946, 0.162346, 1)
 
 [node name="ConveyorContainer" type="Node2D" parent="."]
