@@ -43,7 +43,7 @@ func meets_criteria() -> bool:
 	return true
 
 func show_memo(memo: Memo):
-	$MemoAnimator/MemoPaper/MemoText.text = memo.text
+	$MemoAnimator/MemoContainer/MemoPaper/MemoText.text = memo.text
 	$MemoAnimator.play('appear')
 
 func _ready() -> void:

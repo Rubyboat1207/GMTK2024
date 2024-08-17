@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 var last_mouse_position = Vector2(0,0)
 
 func _input(event: InputEvent):
-	var grid_position = grid_helper.from_screen_space(get_viewport().get_mouse_position());
-	var pos = grid_helper.snap_to_grid(get_viewport().get_mouse_position());
+	var grid_position = grid_helper.from_screen_space($Camera2D.get_global_mouse_position());
+	var pos = grid_helper.snap_to_grid($Camera2D.get_global_mouse_position());
 	
 	
 	
