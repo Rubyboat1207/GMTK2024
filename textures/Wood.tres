@@ -1,0 +1,10 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://c8ivxs2afg2r7"]
+
+[ext_resource type="Texture2D" uid="uid://blcifhtyr1sro" path="res://textures/floor.png" id="1_43hpg"]
+[ext_resource type="Texture2D" uid="uid://bri8ktdyorteo" path="res://textures/floor_n.png" id="2_h4n8p"]
+
+[resource]
+diffuse_texture = ExtResource("1_43hpg")
+normal_texture = ExtResource("2_h4n8p")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.15
