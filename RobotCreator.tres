@@ -1,8 +1,0 @@
-[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://s15pmb2tbeai"]
-
-[ext_resource type="Texture2D" uid="uid://ccdapr1aeh2ui" path="res://robot_factory.png" id="1_v71t0"]
-[ext_resource type="Texture2D" uid="uid://7hbpnni4vkwy" path="res://robot_factory_normal.png" id="2_b5eb6"]
-
-[resource]
-diffuse_texture = ExtResource("1_v71t0")
-normal_texture = ExtResource("2_b5eb6")

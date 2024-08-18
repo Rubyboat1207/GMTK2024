@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvu5immy4c20c"]
 
 [ext_resource type="Texture2D" uid="uid://quwx6weu78ls" path="res://basic_machine.png" id="1_6w3i0"]
-[ext_resource type="Script" path="res://Building.gd" id="1_7v7yg"]
-[ext_resource type="PackedScene" uid="uid://cuko8kuo3nky8" path="res://Robot.tscn" id="2_7eetk"]
+[ext_resource type="Script" path="res://Scripts/Building.gd" id="1_7v7yg"]
+[ext_resource type="PackedScene" uid="uid://dn7b4eyrpgeb8" path="res://Robot.tscn" id="2_7eetk"]
 
 [node name="DoNothingMachine2" type="Node2D"]
 script = ExtResource("1_7v7yg")

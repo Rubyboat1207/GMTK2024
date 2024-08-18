@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuko8kuo3nky8"]
+[gd_scene load_steps=7 format=3 uid="uid://dn7b4eyrpgeb8"]
 
-[ext_resource type="Texture2D" uid="uid://ckg7rorn7fvnv" path="res://blank_robot.png" id="1_7wj7q"]
-[ext_resource type="Texture2D" uid="uid://d23378pnyeyg1" path="res://robot_antenna.png" id="2_ewqgn"]
-[ext_resource type="Texture2D" uid="uid://ddl50bm6k4c37" path="res://robot_arms.png" id="3_6jlx2"]
-[ext_resource type="Texture2D" uid="uid://dgw4dahgf4n8f" path="res://robot_holiday.png" id="4_mrufw"]
-[ext_resource type="Texture2D" uid="uid://djoghsnsp7nig" path="res://robot_face.png" id="5_v7c34"]
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1_3n1cy"]
+[ext_resource type="Texture2D" uid="uid://ckg7rorn7fvnv" path="res://textures/blank_robot.png" id="1_7wj7q"]
+[ext_resource type="Texture2D" uid="uid://d23378pnyeyg1" path="res://textures/robot_antenna.png" id="2_ewqgn"]
+[ext_resource type="Texture2D" uid="uid://ddl50bm6k4c37" path="res://textures/robot_arms.png" id="3_6jlx2"]
+[ext_resource type="Texture2D" uid="uid://dgw4dahgf4n8f" path="res://textures/robot_holiday.png" id="4_mrufw"]
+[ext_resource type="Texture2D" uid="uid://djoghsnsp7nig" path="res://textures/robot_face.png" id="5_v7c34"]
 
 [node name="Robot" type="Node2D"]
 scale = Vector2(0.65, 0.65)
+script = ExtResource("1_3n1cy")
+cost = 10.0
+type = "robot"
 
 [node name="Body" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -17,11 +21,13 @@ texture = ExtResource("1_7wj7q")
 
 [node name="Antena" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(0.996929, 0.000163909, 8.66354e-05, 1)
 texture_filter = 1
 position = Vector2(1.53846, -43.0769)
 scale = Vector2(4.41, 4.41)
 texture = ExtResource("2_ewqgn")
+script = ExtResource("1_3n1cy")
+individual_value = 2.0
+cost = 3.0
 
 [node name="Arms" type="Sprite2D" parent="."]
 visible = false
@@ -38,6 +44,7 @@ scale = Vector2(4.41, 4.41)
 texture = ExtResource("4_mrufw")
 
 [node name="Face" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(1.53846, -43.0769)
 scale = Vector2(4.41, 4.41)

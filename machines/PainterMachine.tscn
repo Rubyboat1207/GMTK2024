@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://dccbrn0o30wwx"]
+
+[ext_resource type="Script" path="res://machines/painter_machine.gd" id="1_57ydr"]
+[ext_resource type="Texture2D" uid="uid://bfvbp0wybcixb" path="res://textures/painter.png" id="2_d3rar"]
+[ext_resource type="Texture2D" uid="uid://dsbsljj7f2lm6" path="res://textures/just_paint.png" id="3_ppwbf"]
+
+[sub_resource type="Animation" id="Animation_bxlkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w408g"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.279999, 0.279999), Vector2(0.8, 0.8), Vector2(0.775, 0.775)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -13), Vector2(0, -13), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yafwx"]
+_data = {
+"RESET": SubResource("Animation_bxlkl"),
+"pop": SubResource("Animation_w408g")
+}
+
+[node name="PainterMachine" type="Node2D"]
+script = ExtResource("1_57ydr")
+colors = Array[Color]([Color(0, 1, 1, 1), Color(1, 0.494251, 0.42709, 1), Color(0.301961, 1, 0.45098, 1), Color(0.737528, 0.675019, 0.237388, 1), Color(0.131131, 0.179245, 0.248068, 1)])
+cooldown = 0.2
+line_offset = Vector2(0, 56)
+take_type_of_link = true
+cost = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_d3rar")
+
+[node name="Color" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(0.301961, 1, 0.45098, 1)
+z_index = 11
+scale = Vector2(0.909091, 0.909091)
+texture = ExtResource("3_ppwbf")
+
+[node name="LinkVisual" type="Line2D" parent="."]
+z_index = -20
+z_as_relative = false
+width = 40.0
+default_color = Color(0.108046, 0.121946, 0.162346, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ConveyorContainer" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yafwx")
+}

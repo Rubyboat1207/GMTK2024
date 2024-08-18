@@ -1,15 +1,22 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cquu5s520lw5t"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://ssuilyh787o6"]
 
-[ext_resource type="Texture2D" uid="uid://ddwrf6rmqduro" path="res://floor_tile.png" id="1_1vbx2"]
+[ext_resource type="Texture2D" uid="uid://c1uaf6x1eka10" path="res://textures/concrete.tres" id="1_uxkih"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tst4e"]
-texture = ExtResource("1_1vbx2")
-texture_region_size = Vector2i(32, 32)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vpe3"]
+texture = ExtResource("1_uxkih")
+texture_region_size = Vector2i(192, 192)
+0:0/next_alternative_id = 4
 0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/2/modulate = Color(0.91664, 0.91664, 0.91664, 1)
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/3/modulate = Color(1, 1, 0.960784, 1)
 
 [resource]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_tst4e")
+tile_size = Vector2i(192, 192)
+sources/5 = SubResource("TileSetAtlasSource_5vpe3")

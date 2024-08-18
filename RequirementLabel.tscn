@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cffgxnoxvyfpy"]
+
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="1_je3dm"]
+
+[node name="Label" type="Label"]
+theme_override_colors/font_color = Color(0.266667, 0.670588, 0.313726, 1)
+theme_override_fonts/font = ExtResource("1_je3dm")

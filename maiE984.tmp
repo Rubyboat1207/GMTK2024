@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=3 uid="uid://6tmxv1h5hype"]
+
+[ext_resource type="Script" path="res://GameManager.gd" id="1_whbjv"]
+[ext_resource type="PackedScene" uid="uid://c7kll8nutf7ku" path="res://SelectionDisplay.tscn" id="2_q00c8"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="3_4uw8c"]
+[ext_resource type="Script" path="res://MemoController.gd" id="4_shq0s"]
+[ext_resource type="Texture2D" uid="uid://jqjnsypchm3d" path="res://TaskMemo.png" id="4_yemsd"]
+[ext_resource type="FontFile" uid="uid://b5ofjy8tkvkg5" path="res://ArchitectsDaughter-Regular.ttf" id="6_4lo6c"]
+[ext_resource type="TileSet" uid="uid://ssuilyh787o6" path="res://floor_tileset.tres" id="7_7hopb"]
+[ext_resource type="Script" path="res://TileMapHandler.gd" id="8_iqtr8"]
+
+[sub_resource type="Animation" id="Animation_4fool"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MemoAnimator/MemoContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1880, 1040)]
+}
+
+[sub_resource type="Animation" id="Animation_7ormo"]
+resource_name = "appear"
+length = 3.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MemoAnimator/MemoContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1.25, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1880, 1040), Vector2(1880, 940), Vector2(1880, 940), Vector2(1880, 857), Vector2(1880, 857), Vector2(1880, 583)]
+}
+
+[sub_resource type="Animation" id="Animation_t68aa"]
+resource_name = "leave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MemoAnimator/MemoContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1880, 583), Vector2(2452, 583)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jle1"]
+_data = {
+"RESET": SubResource("Animation_4fool"),
+"appear": SubResource("Animation_7ormo"),
+"leave": SubResource("Animation_t68aa")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_whbjv")
+
+[node name="SelectionDisplay" parent="." instance=ExtResource("2_q00c8")]
+script = null
+
+[node name="GridChildrenContainer" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 558.0
+offset_bottom = 213.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4uw8c")
+theme_override_font_sizes/font_size = 64
+text = "Day 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.213257, 4.81308e-08, 1)
+theme_override_fonts/font = ExtResource("3_4uw8c")
+theme_override_font_sizes/font_size = 64
+text = "$100"
+
+[node name="MemoController" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_shq0s")
+
+[node name="MemoAnimator" type="AnimationPlayer" parent="CanvasLayer/MemoController"]
+libraries = {
+"": SubResource("AnimationLibrary_2jle1")
+}
+
+[node name="MemoContainer" type="Control" parent="CanvasLayer/MemoController/MemoAnimator"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MemoPaper" type="TextureRect" parent="CanvasLayer/MemoController/MemoAnimator/MemoContainer"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -567.0
+offset_top = 15.0
+offset_right = 5.0
+offset_bottom = 541.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_yemsd")
+
+[node name="MemoText" type="Label" parent="CanvasLayer/MemoController/MemoAnimator/MemoContainer/MemoPaper"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 94.0
+offset_right = 544.0
+offset_bottom = 497.0
+theme_override_colors/font_color = Color(0.439216, 0.478431, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.380392)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("6_4lo6c")
+theme_override_font_sizes/font_size = 24
+text = "Hey! You know these robots are supposed to have WiFi right? The customers have been complaining and saying we're false advertising. You have to keep up with whatever the marketing team puts on twitter. I'm skipping approval because I really dont want to deal with them. Put antennas on somewhere."
+autowrap_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -252.0
+offset_right = 524.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4uw8c")
+text = "Alt + Left Mouse to move
+C to cycle buildings
+L to link buildings to each other
+Click to place selected building"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(958, 544)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("player")]
+tile_map_data = PackedByteArray(0, 0, 245, 255, 248, 255, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("7_7hopb")
+script = ExtResource("8_iqtr8")
+tile_id = null
+inner_radius = null
+outer_radius = null
+player = NodePath("../Camera2D")
