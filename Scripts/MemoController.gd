@@ -119,6 +119,12 @@ func _ready() -> void:
 	inactive_memos = memos
 
 func _on_day_timer_timeout():
+	for memo: Memo in active_memos:
+		if !memo.meets_criteria():
+			GameManager.instance.add_money(-100)
+		else:
+			GameManager.instance.add_money(50)
+	
 	add_memo(inactive_memos.pick_random())
 
 

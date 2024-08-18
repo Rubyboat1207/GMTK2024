@@ -59,7 +59,7 @@ func _input(event: InputEvent):
 		if can_afford(dummy_instance.cost):
 			if grid_helper.is_placable(grid_position):
 				grid_helper.place_machine(selected_machine, grid_position)
-			add_money(-dummy_instance.cost)
+				add_money(-dummy_instance.cost)
 	if Input.is_action_just_pressed("link"):
 		var cur_target = grid_helper.get_at_position(grid_helper.from_screen_space(pos)) as Building
 		if cur_target != null && link_target == null && cur_target.can_link:
