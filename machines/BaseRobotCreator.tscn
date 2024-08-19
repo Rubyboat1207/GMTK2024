@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c83tqadluxxre"]
+[gd_scene load_steps=8 format=3 uid="uid://c83tqadluxxre"]
 
 [ext_resource type="Script" path="res://Scripts/Building.gd" id="1_dkmvk"]
-[ext_resource type="PackedScene" uid="uid://dn7b4eyrpgeb8" path="res://Robot.tscn" id="2_gmpcy"]
+[ext_resource type="PackedScene" uid="uid://dn7b4eyrpgeb8" path="res://Toys/Robot.tscn" id="2_gmpcy"]
 [ext_resource type="Texture2D" uid="uid://s15pmb2tbeai" path="res://textures/RobotCreator.tres" id="3_gb66r"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="4_n5msk"]
 
 [sub_resource type="Animation" id="Animation_bxlkl"]
 length = 0.001
@@ -66,16 +67,25 @@ _data = {
 
 [node name="BaseRobotCreator" type="Node2D"]
 script = ExtResource("1_dkmvk")
+cooldown = 4.0
 prefab = ExtResource("2_gmpcy")
 output_type = "robot"
 line_offset = Vector2(0, 30)
-cost = 100
+cost = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_gb66r")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -51.8182
+offset_top = -113.636
+offset_right = 91.1818
+offset_bottom = -90.6364
+theme_override_fonts/font = ExtResource("4_n5msk")
+text = "Robot Generator"
 
 [node name="LinkVisual" type="Line2D" parent="."]
 z_index = -20

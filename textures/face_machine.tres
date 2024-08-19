@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://kysxoqmk462u"]
+
+[ext_resource type="Texture2D" uid="uid://dtdoj2tnmhoft" path="res://textures/face_machine.png" id="1_hoet7"]
+[ext_resource type="Texture2D" uid="uid://tl27kk1j4xu1" path="res://textures/face_machine_n.png" id="2_byh21"]
+
+[resource]
+diffuse_texture = ExtResource("1_hoet7")
+normal_texture = ExtResource("2_byh21")

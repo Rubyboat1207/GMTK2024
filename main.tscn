@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://6tmxv1h5hype"]
+[gd_scene load_steps=33 format=3 uid="uid://6tmxv1h5hype"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_whbjv"]
 [ext_resource type="PackedScene" uid="uid://b3h7jllql2fjf" path="res://machines/OutputMachine.tscn" id="2_0pni0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/selection_display.gd" id="3_reqcu"]
 [ext_resource type="Script" path="res://Scripts/MemoController.gd" id="4_shq0s"]
 [ext_resource type="Texture2D" uid="uid://jqjnsypchm3d" path="res://textures/TaskMemo.png" id="4_yemsd"]
+[ext_resource type="Script" path="res://FailingVignette.gd" id="5_8oj4p"]
 [ext_resource type="FontFile" uid="uid://b5ofjy8tkvkg5" path="res://ArchitectsDaughter-Regular.ttf" id="6_4lo6c"]
 [ext_resource type="Texture2D" uid="uid://bal1qj6anjh6l" path="res://textures/empty_clock.png" id="6_etdvd"]
 [ext_resource type="Texture2D" uid="uid://c0yevjovbk73v" path="res://textures/clock_fill.png" id="7_5nnx1"]
@@ -15,6 +16,19 @@
 [ext_resource type="Script" path="res://AreaRequirementShowHide.gd" id="9_7lvpv"]
 [ext_resource type="Texture2D" uid="uid://djkoa75ittiww" path="res://textures/Paper.png" id="9_d0cbb"]
 [ext_resource type="Texture2D" uid="uid://1d5ehoyscklw" path="res://textures/van.tres" id="10_55xsx"]
+[ext_resource type="AudioStream" uid="uid://c20wjt18sgcfj" path="res://machines/construct_machine.mp3" id="14_vjr3t"]
+[ext_resource type="AudioStream" uid="uid://cprjx8i4vxb5t" path="res://Please Hold - Jono (Radio Version).mp3" id="15_vwqtp"]
+[ext_resource type="AudioStream" uid="uid://cvmrsq6n2tck5" path="res://conveyor.mp3" id="16_dnn87"]
+
+[sub_resource type="Gradient" id="Gradient_apcdr"]
+offsets = PackedFloat32Array(0.649351, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.533333, 0.0588235, 0, 0.215686)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3tq8u"]
+gradient = SubResource("Gradient_apcdr")
+fill = 1
+fill_from = Vector2(0.522936, 0.513761)
+fill_to = Vector2(1, 0.545872)
 
 [sub_resource type="Animation" id="Animation_4fool"]
 length = 0.001
@@ -71,45 +85,6 @@ _data = {
 "leave": SubResource("Animation_t68aa")
 }
 
-[sub_resource type="Animation" id="Animation_kdr2e"]
-resource_name = "SlideOut"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Control:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1880, 0), Vector2(2291, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/Control:rotation")
-tracks/1/interp = 4
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1692, 300.5), Vector2(2132, 300.5)]
-}
-
 [sub_resource type="Animation" id="Animation_4irf1"]
 length = 0.001
 tracks/0/type = "value"
@@ -146,7 +121,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2132, 300.5)]
+"values": [Vector2(2083, 311)]
 }
 
 [sub_resource type="Animation" id="Animation_xbppe"]
@@ -177,7 +152,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -186,6 +161,45 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2132, 300.5), Vector2(1692, 300.5)]
+}
+
+[sub_resource type="Animation" id="Animation_kdr2e"]
+resource_name = "SlideOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Control:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1880, 0), Vector2(2291, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Control:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("AnimationPlayer/Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1692, 300.5), Vector2(2132, 300.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0bnqp"]
@@ -208,12 +222,12 @@ fill = 1
 fill_from = Vector2(0.5, 0.513761)
 fill_to = Vector2(0.449541, 0)
 
-[node name="Node2D" type="Node2D"]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("output")]
 script = ExtResource("1_whbjv")
+output = NodePath("GridChildrenContainer/VanPickup")
 
 [node name="Day Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+wait_time = 60.0
 autostart = true
 
 [node name="SelectionDisplay" parent="." instance=ExtResource("2_q00c8")]
@@ -222,10 +236,21 @@ script = ExtResource("3_reqcu")
 
 [node name="GridChildrenContainer" type="Node2D" parent="."]
 
-[node name="DoNothingMachine" parent="GridChildrenContainer" instance=ExtResource("2_0pni0")]
+[node name="VanPickup" parent="GridChildrenContainer" instance=ExtResource("2_0pni0")]
 position = Vector2(1650, 600)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FailingVignette" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_3tq8u")
+script = ExtResource("5_8oj4p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_right = 558.0
@@ -385,7 +410,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -384.0
 offset_top = 68.0
-offset_right = -143.0
+offset_right = -27.0
 offset_bottom = 600.0
 grow_horizontal = 0
 mouse_filter = 2
@@ -397,11 +422,24 @@ collision_mask = 0
 script = ExtResource("9_7lvpv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AnimationPlayer/Area2D"]
-position = Vector2(2132, 300.5)
+position = Vector2(2083, 311)
 shape = SubResource("RectangleShape2D_4a3q6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1355, 544)
+
+[node name="BuildingConstructionSound" type="AudioStreamPlayer" parent="Camera2D"]
+stream = ExtResource("14_vjr3t")
+volume_db = -17.38
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Camera2D"]
+stream = ExtResource("15_vwqtp")
+volume_db = -28.535
+autoplay = true
+
+[node name="ConveyorBeltSound" type="AudioStreamPlayer" parent="Camera2D"]
+stream = ExtResource("16_dnn87")
+volume_db = -17.93
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("player")]
 z_index = -999
@@ -424,8 +462,11 @@ texture = SubResource("GradientTexture2D_y40qe")
 position = Vector2(2024, 454)
 texture = ExtResource("10_55xsx")
 
+[connection signal="link_attempted" from="." to="CanvasLayer/MemoController" method="_on_game_manager_link_attempted"]
 [connection signal="on_machine_switch" from="." to="SelectionDisplay" method="on_machine_cycled"]
 [connection signal="timeout" from="Day Timer" to="CanvasLayer/MemoController" method="_on_day_timer_timeout"]
-[connection signal="item_processed" from="GridChildrenContainer/DoNothingMachine" to="CanvasLayer/MemoController" method="_on_item_processed"]
+[connection signal="item_processed" from="GridChildrenContainer/VanPickup" to="CanvasLayer/MemoController" method="_on_item_processed"]
+[connection signal="on_stopped_meeting_criteria" from="CanvasLayer/MemoController" to="CanvasLayer/FailingVignette" method="_on_memo_controller_on_stopped_meeting_criteria"]
+[connection signal="started_meeting_criteria" from="CanvasLayer/MemoController" to="CanvasLayer/FailingVignette" method="_on_memo_controller_started_meeting_criteria"]
 [connection signal="mouse_entered" from="CanvasLayer/AnimationPlayer/Area2D" to="CanvasLayer/AnimationPlayer/Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/AnimationPlayer/Area2D" to="CanvasLayer/AnimationPlayer/Area2D" method="_on_mouse_exited"]

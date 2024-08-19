@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dccbrn0o30wwx"]
+[gd_scene load_steps=8 format=3 uid="uid://dccbrn0o30wwx"]
 
-[ext_resource type="Script" path="res://machines/painter_machine.gd" id="1_57ydr"]
+[ext_resource type="Script" path="res://Scripts/painter_machine.gd" id="1_57ydr"]
 [ext_resource type="Texture2D" uid="uid://bfvbp0wybcixb" path="res://textures/painter.png" id="2_d3rar"]
 [ext_resource type="Texture2D" uid="uid://dsbsljj7f2lm6" path="res://textures/just_paint.png" id="3_ppwbf"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="4_o2ded"]
 
 [sub_resource type="Animation" id="Animation_bxlkl"]
 length = 0.001
@@ -70,13 +71,21 @@ colors = Array[Color]([Color(0, 1, 1, 1), Color(1, 0.494251, 0.42709, 1), Color(
 cooldown = 0.2
 line_offset = Vector2(0, 56)
 take_type_of_link = true
-cost = 50
+cost = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_d3rar")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -68.3871
+offset_top = -112.258
+offset_right = 74.6129
+offset_bottom = -89.2581
+theme_override_fonts/font = ExtResource("4_o2ded")
+text = "Paint Applicator"
 
 [node name="Color" type="Sprite2D" parent="Sprite2D"]
 self_modulate = Color(0.301961, 1, 0.45098, 1)

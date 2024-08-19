@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7atrrwxb5dcw"]
+[gd_scene load_steps=7 format=3 uid="uid://c7atrrwxb5dcw"]
 
 [ext_resource type="Script" path="res://Scripts/Building.gd" id="1_vq8ap"]
 [ext_resource type="Texture2D" uid="uid://1d1fckj0kdnw" path="res://textures/conveyor_pole.png" id="2_3ho71"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="3_2dcti"]
 
 [sub_resource type="Animation" id="Animation_bxlkl"]
 length = 0.001
@@ -70,12 +71,20 @@ take_type_of_link = true
 cost = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
+self_modulate = Color(0, 1, 1, 1)
 z_index = -30
 z_as_relative = false
 texture_filter = 1
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_3ho71")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -54.5455
+offset_top = -32.7273
+offset_right = 88.4545
+offset_bottom = -9.72727
+theme_override_fonts/font = ExtResource("3_2dcti")
+text = "Conveyor Pole"
 
 [node name="LinkVisual" type="Line2D" parent="."]
 z_index = -20

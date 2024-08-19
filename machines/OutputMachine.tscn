@@ -1,17 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3h7jllql2fjf"]
+[gd_scene load_steps=4 format=3 uid="uid://b3h7jllql2fjf"]
 
 [ext_resource type="Script" path="res://Scripts/OutputMachine.gd" id="1_e3u4h"]
 [ext_resource type="Texture2D" uid="uid://quwx6weu78ls" path="res://basic_machine.png" id="2_31tus"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="3_ptg82"]
 
 [node name="DoNothingMachine" type="Node2D"]
 script = ExtResource("1_e3u4h")
 cooldown = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.4664, 0.54075, 1)
+self_modulate = Color(1, 0.466667, 0.541176, 1)
 z_index = 10
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_31tus")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -92.0
+offset_top = 48.0
+offset_right = 108.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("3_ptg82")
+theme_override_font_sizes/font_size = 36
+text = "Van Pickup"
 
 [node name="LinkVisual" type="Line2D" parent="."]
 z_index = -20

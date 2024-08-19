@@ -101,29 +101,37 @@ func _physics_process(delta):
 func modify():
 	pass
 
+func _process(delta):
+	if get_viewport().get_camera_2d().get_global_mouse_position().distance_to(global_position) < 200:
+		$Sprite2D/NameLabel.visible = true
+	else:
+		$Sprite2D/NameLabel.visible = false
+		
 
 func mutate_item(item: Node2D) -> Node2D:
 	return item
 
-
+var hard_mode = false
 
 func output_item():
 	var modified_item: Node2D;
 	if prefab != null:
 		modified_item = mutate_item(prefab.instantiate())
 		if modified_item is ItemData:
-			if GameManager.instance.can_afford(modified_item.cost):
-				GameManager.instance.add_money(-modified_item.cost)
-			else:
-				held_item = modified_item
-				return
+			if hard_mode:
+				if GameManager.instance.can_afford(modified_item.cost):
+					GameManager.instance.add_money(-modified_item.cost, false, position + Vector2(0, -70))
+				else:
+					held_item = modified_item
+					return
 	else:
 		modified_item = held_item
 		if modified_item.get_parent() == null:
-			if !GameManager.instance.can_afford(held_item.cost):
-				return
-			else:
-				GameManager.instance.add_money(-modified_item.cost)
+			if hard_mode:
+				if !GameManager.instance.can_afford(held_item.cost):
+					return
+				else:
+					GameManager.instance.add_money(-modified_item.cost, false, position + Vector2(0, -70))
 		held_item = null
 	
 	if modified_item.get_parent() != null:

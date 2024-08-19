@@ -1,7 +1,7 @@
 class_name ItemData extends Node2D
 
 @export var individual_value = 15.0
-@export var cost = 5.0
+@export var cost = 0
 @export var type: String;
 
 var is_added = false

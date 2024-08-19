@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl0rkutkkoqah"]
+[gd_scene load_steps=7 format=3 uid="uid://bl0rkutkkoqah"]
 
-[ext_resource type="Script" path="res://machines/robot_antenna_attacher.gd" id="1_ojjce"]
+[ext_resource type="Script" path="res://Scripts/robot_antenna_attacher.gd" id="1_ojjce"]
 [ext_resource type="Texture2D" uid="uid://dan6rhjp6wdp7" path="res://textures/antenna_machine.tres" id="2_2jrj0"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="3_o4dj0"]
 
 [sub_resource type="Animation" id="Animation_bxlkl"]
 length = 0.001
@@ -68,12 +69,21 @@ script = ExtResource("1_ojjce")
 cooldown = 1.4
 output_type = "robot"
 line_offset = Vector2(0, 56)
+cost = 350
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_2jrj0")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -39.0909
+offset_top = -95.4545
+offset_right = 103.909
+offset_bottom = -72.4545
+theme_override_fonts/font = ExtResource("3_o4dj0")
+text = "Antenna Attacher"
 
 [node name="LinkVisual" type="Line2D" parent="."]
 z_index = -20

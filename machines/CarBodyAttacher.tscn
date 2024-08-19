@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://jeya47wfjnns"]
+
+[ext_resource type="Script" path="res://HideShowModifier.gd" id="1_1j6ux"]
+[ext_resource type="Texture2D" uid="uid://4stitfv8nyt4" path="res://textures/car_body_machine.png" id="2_huldb"]
+[ext_resource type="FontFile" uid="uid://ddgpoaytrfj6u" path="res://Kodchasan-Regular.ttf" id="3_qq23l"]
+
+[sub_resource type="Animation" id="Animation_bxlkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w408g"]
+resource_name = "pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.279999, 0.279999), Vector2(0.8, 0.8), Vector2(0.775, 0.775)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -13), Vector2(0, -13), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yafwx"]
+_data = {
+"RESET": SubResource("Animation_bxlkl"),
+"pop": SubResource("Animation_w408g")
+}
+
+[node name="CarBodyAttacher" type="Node2D"]
+script = ExtResource("1_1j6ux")
+attribute = "Body"
+input_type = "car"
+can_link_to = null
+can_link = null
+cooldown = 1.4
+output_type = "robot"
+line_offset = Vector2(0, 56)
+take_type_of_link = null
+cost = 350
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_huldb")
+
+[node name="NameLabel" type="Label" parent="Sprite2D"]
+offset_left = -59.0909
+offset_top = -91.8182
+offset_right = 90.9091
+offset_bottom = -68.8182
+theme_override_fonts/font = ExtResource("3_qq23l")
+text = "Car Body Attacher"
+
+[node name="LinkVisual" type="Line2D" parent="."]
+z_index = -20
+z_as_relative = false
+width = 40.0
+default_color = Color(0.108046, 0.121946, 0.162346, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ConveyorContainer" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yafwx")
+}
